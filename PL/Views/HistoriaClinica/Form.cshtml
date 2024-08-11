@@ -1,0 +1,451 @@
+﻿@model ML.HistoriaClinica
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string listaJson = Json.Serialize(Model.ExamComplementario.TipoExamCompl.TiposExamenesCompls).ToString();
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Nueva Historia Clínica</h2>
+            <h5>Capture los datos del paciente:</h5>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-10">
+               </div>
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.Fecha, new{ @align="center" })
+                    @Html.TextBoxFor(model => model.Fecha,"{0:dd-MM-yyyy}", new { @readonly="readonly", @class = "form-control" , @align="center" })
+                </div>
+            </div>
+            @using (Html.BeginForm("Form", "HistoriaClinica", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <h5>Identificación del Paciente</h5>
+                <br/>
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.Nombre, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Paciente.Nombre, new { @class = "form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(event,'lblErrorNombre')", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Paciente.Nombre)
+                        <label id="lblErrorNombre"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.ApellidoPaterno, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Paciente.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @onkeypress = "return SoloLetras(event,'lblErrorApellidoPaterno')", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Paciente.ApellidoPaterno)
+                        <label id="lblErrorApellidoPaterno"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.ApellidoMaterno, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Paciente.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @onkeypress = "return SoloLetras(event,'lblErrorApellidoMaterno')", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Paciente.ApellidoMaterno)
+                        <label id="lblErrorApellidoMaterno" color="red"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.Genero, new { @class = "" })
+                        @if (Model.Paciente.Genero == null)
+                        {
+                            @Html.DropDownListFor(model => model.Paciente.Genero, new List<SelectListItem>
+                                {
+                                    new SelectListItem() {Text="Selecciona una opción", Value=""},
+                                    new SelectListItem() {Text="Masculino", Value="Masculino"},
+                                    new SelectListItem() {Text="Femenino", Value="Femenino"},
+                                    new SelectListItem() {Text="Otro", Value="Otro"}
+                                }, new { @class = "form-select" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(model => model.Paciente.Genero, new { @readonly="readonly", @class = "form-control" })
+                        }
+                        @Html.ValidationMessageFor(model => model.Paciente.Genero)
+                        <label id="lblErrorGenero"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.Edad, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Paciente.Edad, new { @class = "form-control", @id = "nbrEdad" })
+                        @Html.ValidationMessageFor(model => model.Paciente.Edad)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.Direccion, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Paciente.Direccion, new { @class = "form-control", @id = "txtDireccion",  @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Paciente.Direccion)
+                        <label id="lblErrorDireccion"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.Telefono, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Paciente.Telefono, new { @class = "form-control", @id = "txtTelefono", @onkeypress = "return SoloNumeros(event,'lblErrorTelefono')", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Paciente.Telefono)
+                        <label id="lblErrorTelefono"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Paciente.Ocupacion, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Paciente.Ocupacion, new { @class = "form-control", @id = "txtOcupacion", @onkeypress = "return SoloLetras(event,'lblErrorOcupacion')", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Paciente.Ocupacion)
+                        <label id="lblErrorTelefono"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Motivo, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Motivo, new { @class = "form-control", @id = "txtMotivo", @onkeypress = "return SoloLetras(event,'lblErrorMotivo')", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Motivo)
+                        <label id="lblErrorMotivo"></label>
+                    </div>
+                    
+                </div>
+                <hr />
+
+                <h5>Antecedentes Heredo - Familiares</h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr class="text-center">
+                                    <td>Nombre</td>
+                                    <td>Check</td>
+                                    <td>Comentario</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.AnteHeredoFam.AntesHeredoFams.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@Html.DisplayFor(model => model.AnteHeredoFam.AntesHeredoFams[i].AnteFam.Nombre)</td>
+                                        <td>@Html.CheckBoxFor(model => model.AnteHeredoFam.AntesHeredoFams[i].CheckBox, new { @class = "form-check-input", @type = "checkbox", @onchange="habilitarTextbox(this.id, 'textBoxAnteHerFam"+i+"')", @id = "checkBoxAnteHerFam"+i })</td>
+                                        <td>@Html.TextBoxFor(model => model.AnteHeredoFam.AntesHeredoFams[i].Comentario,  new { @class = "form-control classFromTextBox", @autocomplete = "off", @id = "textBoxAnteHerFam"+i })</td>
+                                        <td style = " display: none">@Html.TextBoxFor(model => model.AnteHeredoFam.AntesHeredoFams[i].AnteFam.Nombre)</td>
+                                        <td style = " display: none">@Html.TextBoxFor(model => model.AnteHeredoFam.AntesHeredoFams[i].AnteFam.IdAnteFam)</td>
+                                        <td style = " display: none">@Html.TextBoxFor(model => model.AnteHeredoFam.AntesHeredoFams[i].IdAnteHeredoFam)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>Antecedentes Personales No Patológicos</h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr class="text-center">
+                                    <td>Nombre</td>
+                                    <td>Check</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.AnteNoPatoPers.AntesNoPatosPers.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@Html.DisplayFor(model => model.AnteNoPatoPers.AntesNoPatosPers[i].AntePers.Nombre)</td>
+                                        <td>@Html.CheckBoxFor(model => model.AnteNoPatoPers.AntesNoPatosPers[i].CheckBoxAnteNoPatoPers, new { @class = "form-check-input", @type = "checkbox", @id = "checkBoxAnteNoPatoPers"+i })</td>
+                                        <td style=" display: none">@Html.TextBoxFor(model => model.AnteNoPatoPers.AntesNoPatosPers[i].AntePers.Nombre)</td>
+                                        <td style=" display: none">@Html.TextBoxFor(model => model.AnteNoPatoPers.AntesNoPatosPers[i].AntePers.IdAntePers)</td>
+                                        <td style=" display: none">@Html.TextBoxFor(model => model.AnteNoPatoPers.AntesNoPatosPers[i].IdAnteNoPatoPers)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>Exploración Física</h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Exploracion.Temperatura, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Exploracion.Temperatura, new { @class = "form-control", @id = "txtTemperatura", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Exploracion.Temperatura)
+                        <label id="lblErrorTemperatura"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Exploracion.TA, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Exploracion.TA, new { @class = "form-control", @id = "txtTA", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Exploracion.TA)
+                        <label id="lblErrorTA"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Exploracion.FR, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Exploracion.FR, new { @class = "form-control", @id = "txtFR", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Exploracion.FR)
+                        <label id="lblErrorFR" color="red"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Exploracion.FC, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Exploracion.FC, new { @class = "form-control", @id = "txtFC", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Exploracion.FC)
+                        <label id="lblErrorFC" color="red"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Aspecto del Paciente")
+                        @if (Model.Exploracion.AspcPac == null)
+                        {
+                            @Html.DropDownListFor(model => model.Exploracion.AspcPac, new List<SelectListItem>
+                            {
+                                new SelectListItem() {Text="Selecciona una opción", Value=""},
+                                new SelectListItem() {Text="Cooperador", Value="Cooperador"},
+                                new SelectListItem() {Text="Otra opcion", Value="Otra opcion"},
+                                new SelectListItem() {Text="Otra opcion dame", Value="Otra opcion dame"}
+                            }, new { @class = "form-select" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(model => model.Exploracion.AspcPac, new { @readonly="readonly", @class = "form-control" })
+                        }
+                        @Html.ValidationMessageFor(model => model.Exploracion.AspcPac)
+                        <label id="lblErrorAspPac"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Labios y Comisuras")
+                        @Html.TextBoxFor(model => model.Exploracion.LabiosComisuras, new { @class = "form-control", @id = "txtLabiosComisuras", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Exploracion.LabiosComisuras)
+                        <label id="lblErrorLabiosComisuras" color="red"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Exploracion.ATM, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Exploracion.ATM, new { @class = "form-control", @id = "txtATM", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Exploracion.ATM)
+                        <label id="lblErrorATM" color="red"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Región hioidea y tiroides")
+                        @Html.TextBoxFor(model => model.Exploracion.RegionHyT, new { @class = "form-control", @id = "txtRegionHyT", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Exploracion.RegionHyT)
+                        <label id="lblErrorRegionHyT" color="red"></label>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>Antecedentes Personales Patológicos</h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr class="text-center">
+                                    <td>Padece alguna enfermedad tipo:</td>
+                                    <td>Check</td>
+                                    <td>¿Cúal?</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.AntePersPato.AntesPersPatos.Count; i++)
+                                {
+                                    <tr class="text-center">
+                                        <td>@Html.DisplayFor(model => model.AntePersPato.AntesPersPatos[i].AntePato.Nombre)</td>
+                                        <td>@Html.CheckBoxFor(model => model.AntePersPato.AntesPersPatos[i].CheckBoxAntePersPato, new { @class = "form-check-input", @type = "checkbox", @onchange="habilitarTextbox(this.id, 'textBoxRespuesta"+i+"')", @id = "checkBoxAntePerPato"+i })</td>
+                                        <td>@Html.TextBoxFor(model => model.AntePersPato.AntesPersPatos[i].Respuesta, new { @class = "form-control classFromTextBox", @id = "textBoxRespuesta"+i })</td>
+                                        <td style=" display: none">@Html.TextBoxFor(model => model.AntePersPato.AntesPersPatos[i].AntePato.Nombre)</td>
+                                        <td style=" display: none">@Html.TextBoxFor(model => model.AntePersPato.AntesPersPatos[i].AntePato.IdAntePato)</td>
+                                        <td style=" display: none">@Html.TextBoxFor(model => model.AntePersPato.AntesPersPatos[i].IdAntePersPato)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>Examen Clínico Intrabucal</h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamIntrabucal.Carrillos, new { @class = "" })
+                        @Html.TextBoxFor(model => model.ExamIntrabucal.Carrillos, new { @class = "form-control", @id = "txtCarrillos", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamIntrabucal.Carrillos)
+                        <label id="lblErrorCarrillos"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamIntrabucal.Mucosa, new { @class = "" })
+                        @Html.TextBoxFor(model => model.ExamIntrabucal.Mucosa, new { @class = "form-control", @id = "txtMucosa", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamIntrabucal.Mucosa)
+                        <label id="lblErrorMucosa"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamIntrabucal.Encia, new { @class = "" })
+                        @Html.TextBoxFor(model => model.ExamIntrabucal.Encia, new { @class = "form-control", @id = "txtEncia", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamIntrabucal.Encia)
+                        <label id="lblErrorEncia" color="red"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamIntrabucal.Lengua, new { @class = "" })
+                        @Html.TextBoxFor(model => model.ExamIntrabucal.Lengua, new { @class = "form-control", @id = "txtLengua", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamIntrabucal.Lengua)
+                        <label id="lblErrorLengua" color="red"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamIntrabucal.Paladar, new { @class = "" })
+                        @Html.TextBoxFor(model => model.ExamIntrabucal.Paladar, new { @class = "form-control", @id = "txtPaladar", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamIntrabucal.Paladar)
+                        <label id="lblErrorPaladar" color="red"></label>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>Examen de Oclusión</h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.Label("Tipo de dentición")
+                        @Html.TextBoxFor(model => model.ExamOclusion.TipoDenticion, new { @class = "form-control", @id = "txtTipoDenticion", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.TipoDenticion)
+                        <label id="lblErrorTipoDenticion"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamOclusion.Erupcion, new { @class = "" })
+                        @Html.TextBoxFor(model => model.ExamOclusion.Erupcion, new { @class = "form-control", @id = "txtErupcion", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.Erupcion)
+                        <label id="lblErrorErupcion"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Plano Terminal (L)")
+                        @Html.TextBoxFor(model => model.ExamOclusion.PlanoTerminal_L, new { @class = "form-control", @id = "txtPlanoTerminal_L", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.PlanoTerminal_L)
+                        <label id="lblErrorPlanoTerminal_L"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Plano Terminal (R)")
+                        @Html.TextBoxFor(model => model.ExamOclusion.PlanoTerminal_R, new { @class = "form-control", @id = "txtPlanoTerminal_R", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.PlanoTerminal_R)
+                        <label id="lblErrorPlanoTerminal_R"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Clasificación de Ángulo (L)")
+                        @Html.TextBoxFor(model => model.ExamOclusion.ClasAngulo_L, new { @class = "form-control", @id = "txtClasAngulo_L", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.ClasAngulo_L)
+                        <label id="lblErrorClasAngulo_L"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Clasificación de Ángulo (R)")
+                        @Html.TextBoxFor(model => model.ExamOclusion.ClasAngulo_R, new { @class = "form-control", @id = "txtClasAngulo_R", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.ClasAngulo_R)
+                        <label id="lblErrorClasAngulo_R"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Relación Caninos (L)")
+                        @Html.TextBoxFor(model => model.ExamOclusion.RelaCan_L, new { @class = "form-control", @id = "txtRelaCan_L", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.RelaCan_L)
+                        <label id="lblErrorRelaCan_L"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Relación Caninos (R)")
+                        @Html.TextBoxFor(model => model.ExamOclusion.RelaCan_R, new { @class = "form-control", @id = "txtRelaCan_R", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.RelaCan_R)
+                        <label id="lblErrorRelaCan_R"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Relación Anteriores")
+                        @Html.TextBoxFor(model => model.ExamOclusion.RelaAnt, new { @class = "form-control", @id = "txtRelaAnt", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.RelaAnt)
+                        <label id="lblErrorRelaAnt"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Línea Media")
+                        @Html.TextBoxFor(model => model.ExamOclusion.LineaMedia, new { @class = "form-control", @id = "txtLineaMedia", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.LineaMedia)
+                        <label id="lblErrorLineaMedia"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Tipo de mordida")
+                        @if(Model.ExamOclusion.TipoMordida.TiposMordidas == null)
+                        {   
+                            @Html.DropDownListFor(model => model.ExamOclusion.TipoMordida.IdTipoMordida, new SelectList(string.Empty, "Value", "Text"), "Selecciona una opción", htmlAttributes: new { id = "ddlTipoMordida", @class = "form-select" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(model => model.ExamOclusion.TipoMordida.IdTipoMordida, new SelectList(Model.ExamOclusion.TipoMordida.TiposMordidas, "IdTipoMordida", "Tipo"), "Selecciona una opción", htmlAttributes: new { id = "ddlTipoMordida", @class = "form-select" })
+                        }
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.TipoMordida)
+                        <label id="lblErrorTipoMordida"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Apiñamiento")
+                        @Html.CheckBoxFor(model => model.ExamOclusion.Apinamiento, new { @class = "form-check-input", @id = "checkBoxApinamiento", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.Apinamiento)
+                        <label id="lblErrorApinamiento"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamOclusion.Diastemas, new { @class = "" })
+                        @Html.CheckBoxFor(model => model.ExamOclusion.Diastemas, new { @class = "form-check-input", @id = "checkBoxDiastemas", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.Diastemas)
+                        <label id="lblErrorDiastemas"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ExamOclusion.Tremas, new { @class = "" })
+                        @Html.CheckBoxFor(model => model.ExamOclusion.Tremas, new { @class = "form-check-input", @id = "checkBoxTremas", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.Tremas)
+                        <label id="lblErrorTremas"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Versiones dentarias")
+                        @Html.TextBoxFor(model => model.ExamOclusion.VersDentarias, new { @class = "form-control", @id = "txtVersDentarias", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.VersDentarias)
+                        <label id="lblErrorVersDentarias"></label>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Alteraciones de forma, número y/o estructura")
+                        @Html.TextBoxFor(model => model.ExamOclusion.AlteraFormNumEstru, new { @class = "form-control", @id = "txtAlteraFormNumEstru", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.ExamOclusion.AlteraFormNumEstru)
+                        <label id="lblErrorAlteraFormNumEstru"></label>
+                    </div>
+                </div>
+                <hr />
+
+                <h5>Exámenes Complementarios</h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-primary" id="addExamCompl" type="button" onclick="agregarFormulario(@listaJson); addObjectToList(@Json.Serialize(Model).ToString());">Agregar examen complementario</button>
+                    </div>
+                </div>
+                <br/>
+                <div class="row" id="divByExamCompl">
+                </div>
+                <hr />
+
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                        @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/Functions.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+        function addObjectToList(historiaClinica) {
+    $.ajax({
+        url: '@Url.Action("addObjectTiList")',
+        type: 'POST',
+        data: JSON.stringify(historiaClinica),
+        contentType: 'application/json',
+        success: function (response) {
+            // Manejar la respuesta del servidor
+            // Por ejemplo, actualizar la lista en la página
+        },
+        error: function (error) {
+            // Manejar el error en caso de que ocurra
+        }
+    });
+}
+</script>
+  
+}
+
