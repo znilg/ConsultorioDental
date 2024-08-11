@@ -9,57 +9,57 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PL
 build_property.RootNamespace = PL
-build_property.ProjectDir = C:\Users\ximee\source\repos\ConsultorioDental1\ConsultorioDental\PL\
+build_property.ProjectDir = C:\Users\ximee\OneDrive\Documentos\Github\ConsultorioDental\PL\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ximee\source\repos\ConsultorioDental1\ConsultorioDental\PL
+build_property.MSBuildProjectDirectory = C:\Users\ximee\OneDrive\Documentos\Github\ConsultorioDental\PL
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/HistoriaClinica/Form.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/HistoriaClinica/Form.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWFDbGluaWNhXEZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/HistoriaClinica/ValidationModal.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/HistoriaClinica/ValidationModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWFDbGluaWNhXFZhbGlkYXRpb25Nb2RhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/Home/Index.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/Home/Privacy.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/Paciente/GetAll.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/Paciente/GetAll.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVcR2V0QWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/Shared/Error.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/_ViewImports.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/_ViewStart.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ximee/source/repos/ConsultorioDental1/ConsultorioDental/PL/Views/Shared/_Layout.cshtml]
+[C:/Users/ximee/OneDrive/Documentos/Github/ConsultorioDental/PL/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ykycstrbf1

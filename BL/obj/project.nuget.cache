@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1CDNe4y/j3m1Npom3br613T8wWy3evOLKo7hpHJDqI7dsXtO6O/2egXxnJM+eJ/8uQDEKGsBU6oWr2lQjVrEMw==",
+  "dgSpecHash": "6FGMebsMxE7FmGxwo9fWRL0bxS7JUx41tRTDwSXIvAqRsRPXk2zyabcRKD9++wKlHb+Ff21HAlegcYhEX/PMdw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ximee\\source\\repos\\ConsultorioDental1\\ConsultorioDental\\BL\\BL.csproj",
+  "projectFilePath": "C:\\Users\\ximee\\OneDrive\\Documentos\\Github\\ConsultorioDental\\BL\\BL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ximee\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ximee\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
