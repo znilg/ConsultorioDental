@@ -1,0 +1,12 @@
+/.vs
+/.sonarqube
+/.github
+/.git
+/BL/obj
+/BL/bin
+/DL/obj
+/DL/bin
+/ML/obj
+/ML/bin
+/PL/obj
+/PL/bin
